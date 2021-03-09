@@ -2,7 +2,7 @@
 import os
 import sys
 
-# 瞎jb改
+# 我再改
 if __name__ == "__main__":
     profile = os.environ.get('TYPEIDEA_PROFILE', 'develop')
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "typeidea.settings.%s" % profile)
