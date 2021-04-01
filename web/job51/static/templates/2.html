@@ -1,0 +1,305 @@
+<div style="margin: auto auto; padding: 20px 20px">
+    <select id="text" lay-verify="" onchange=change()>
+        <option value="">请选择一个行业</option>
+        <option value="1" selected>计算机、互联网、通信、电子</option>
+        <option value="2">销售、客服</option>
+        <option value="3">会计、金融、银行、保险</option>
+        <option value="4">生产、营运、采购、物流</option>
+        <option value="5">建筑、房地产</option>
+        <option value="6">设计、市场、媒体、广告</option>
+        <option value="7">人事、行政、高级管理</option>
+        <option value="8">教育、培训</option>
+        <option value="9">生物、制药、化工、医疗</option>
+        <option value="10">咨询、法律、科研</option>
+        <option value="11">服务业</option>
+    </select>
+</div>
+<div id="data" style="display: none">
+    {{ answer.type }},
+    {% for i in answer.d %}
+    {{i}},
+    {% endfor %}
+</div>
+<div id="main" style="width: 900px;height:450px;margin: auto auto"></div>
+<script type="text/javascript">
+    var ddd = '';
+    $.ajaxSettings.async = false;
+
+    function data2(url, type) {
+        $.post(url, type, success);
+
+        function success(data) {
+            ddd = JSON.parse(data);
+        }
+    }
+
+    function change() {
+        var el = document.getElementById('text');
+        var index = el.selectedIndex;
+        var text1 = el.options[index].text;
+        if (text1 == '计算机、互联网、通信、电子') {
+            data2(va, 'a')
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+
+        }
+        if (text1 == '销售、客服') {
+            data2(va, 'b')
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '会计、金融、银行、保险') {
+            data2(va, 'c');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '生产、营运、采购、物流') {
+            data2(va, 'd');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '建筑、房地产') {
+            data2(va, 'e');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '设计、市场、媒体、广告') {
+            data2(va, 'f');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '人事、行政、高级管理') {
+            data2(va, 'g');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '教育、培训') {
+            data2(va, 'h');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '生物、制药、化工、医疗') {
+            data2(va, 'i');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '咨询、法律、科研') {
+            data2(va, 'j');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+        if (text1 == '服务业') {
+            data2(va, 'k');
+            data = []
+            dataAxis = []
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                data.push(ddd.answer.d[i])
+            }
+            for (let i = 0; i < ddd.answer.d.length; i++) {
+                dataAxis.push(i + 1)
+            }
+            f()
+        }
+    }
+
+    var d = document.getElementById('data').textContent;
+    var s = d.split(',')
+    var list = []
+    for (let item = 0; item < s.length - 1; item++) {
+        list.push(s[item])
+    }
+    var va = $.trim(list[0]) + '/';
+    data2(va, 'a')
+    var type = ''
+    var subtext1 = ''
+    if ($.trim(list[0]).localeCompare("salary_2") == 0) {
+        type = '行业薪资对比';
+        subtext1 = 'k/月';
+    }
+    if ($.trim(list[0]).localeCompare("edu_2") == 0) {
+        type = '行业学历对比';
+        subtext1 = '0:  大专以下    1：大专    2：本科    3：硕士    4：博士';
+    }
+    if ($.trim(list[0]).localeCompare("worktime_2") == 0) {
+        type = '工作经验对比';
+        subtext1 = '/年';
+    }
+    if ($.trim(list[0]).localeCompare("need_2") == 0) {
+        type = '岗位需求对比';
+        subtext1 = '/50个';
+    }
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+    f()
+    function f() {
+        var dataAxis = [];
+        var data = [];
+        for (let i = 0; i < ddd.answer.d.length; i++) {
+            data.push(ddd.answer.d[i])
+        }
+        for (let i = 0; i < ddd.answer.d.length; i++) {
+            dataAxis.push(i + 1)
+        }
+        var yMax = 500;
+        var dataShadow = [];
+
+        for (var i = 0; i < data.length; i++) {
+            dataShadow.push(yMax);
+        }
+
+        option = {
+            title: {
+                text: type,
+                subtext: subtext1
+            },
+            xAxis: {
+                data: dataAxis,
+                axisLabel: {
+                    inside: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                z: 10
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            dataZoom: [
+                {
+                    type: 'inside'
+                }
+            ],
+            series: [
+                {
+                    type: 'bar',
+                    showBackground: true,
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#83bff6'},
+                                {offset: 0.5, color: '#188df0'},
+                                {offset: 1, color: '#188df0'}
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#2378f7'},
+                                    {offset: 0.7, color: '#2378f7'},
+                                    {offset: 1, color: '#83bff6'}
+                                ]
+                            )
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+
+        // Enable data zoom when user click bar.
+        var zoomSize = 6;
+        myChart.on('click', function (params) {
+            console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+            myChart.dispatchAction({
+                type: 'dataZoom',
+                startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+            });
+        });
+
+        option && myChart.setOption(option);
+    }
+
+</script>

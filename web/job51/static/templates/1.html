@@ -1,0 +1,127 @@
+<div id="data" style="display: none">
+    {{ answer.type }},
+    {% for i in answer.d %}
+    {{ i }},
+    {% endfor %}
+</div>
+<div id="main" style="width: 1000px;height:500px;margin: auto auto"></div>
+<script type="text/javascript">
+    var d = document.getElementById('data').textContent;
+    var s = d.split(',');
+    var list = [];
+    for (let item = 0; item < s.length-1; item++) {
+        list.push(s[item])
+    }
+    var text1 = '';
+    var subtext1 = '';
+    if ($.trim(list[0]).localeCompare("salary_1")==0) {
+        text1 = '行业薪资对比';
+        subtext1 = 'k/月';
+    }
+    if ($.trim(list[0]).localeCompare("edu_1")==0) {
+        text1 = '行业学历对比';
+        subtext1 = '0:  大专以下    1：大专    2：本科    3：硕士    4：博士';
+    }
+    if ($.trim(list[0]).localeCompare("worktime_1")==0) {
+        text1 = '工作经验对比';
+        subtext1 = '/年';
+    }
+    if ($.trim(list[0]).localeCompare("need_1")==0) {
+        text1 = '岗位需求对比';
+        subtext1 = '/50个';
+    }
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        title: {
+            text: text1,
+            subtext: subtext1
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: ['互联网/通信', '销售/客服', '会计/金融/银行', '生产/采购/物流', '建筑/房地产', '设计/市场/媒体', '人事/行政/管理', '教育/培训', '生物/化工/医疗', '咨询/法律/科研', '服务业']
+        },
+        xAxis: {
+            type: 'value'
+        },
+        axisLabel: {
+            textStyle: {
+                show: true,
+                fontFamily: '微软雅黑',
+                color: "#dc1313",
+                fontSize: '5',
+            },
+        },
+        series: [{
+            data:
+                [{
+                    value: list[1],
+                    itemStyle: {
+                        color: '#a90000'
+                    }
+                }, {
+                    value: list[2],
+                    itemStyle: {
+                        color: '#a90065'
+                    }
+                }, {
+                    value: list[3],
+                    itemStyle: {
+                        color: '#6800a9'
+                    }
+                }, {
+                    value: list[4],
+                    itemStyle: {
+                        color: '#00a96e'
+                    }
+                }, {
+                    value: list[5],
+                    itemStyle: {
+                        color: '#90a900'
+                    }
+                }, {
+                    value: list[6],
+                    itemStyle: {
+                        color: '#0ba900'
+                    }
+                }, {
+                    value: list[7],
+                    itemStyle: {
+                        color: '#00a96e'
+                    }
+                }, {
+                    value: list[8],
+                    itemStyle: {
+                        color: '#90a900'
+                    }
+                }, {
+                    value: list[9],
+                    itemStyle: {
+                        color: '#0ba900'
+                    }
+                }, {
+                    value: list[10],
+                    itemStyle: {
+                        color: '#a90000'
+                    }
+                }, {
+                    value: list[11],
+                    itemStyle: {
+                        color: '#a90065'
+                    }
+                }
+                ],
+            type: 'bar'
+        }]
+    };
+
+    option && myChart.setOption(option);
+</script>

@@ -1,0 +1,100 @@
+<div id="main" style="width: 900px;height:400px;margin: auto auto"></div>
+<script type="text/javascript">
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        title: {
+            text: '关联分析'
+        },
+        tooltip: {},
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series: [
+            {
+                type: 'graph',
+                layout: 'none',
+                symbolSize: 50,
+                roam: true,
+                label: {
+                    show: true
+                },
+                edgeSymbol: ['circle', 'arrow'],
+                edgeSymbolSize: [4, 10],
+                edgeLabel: {
+                    fontSize: 20
+                },
+                data: [{
+                    name: '学历偏高',
+                    x: 300,
+                    y: 300
+                }, {
+                    name: '工作经验小于3年',
+                    x: 800,
+                    y: 300
+                }, {
+                    name: '工资大于8k',
+                    x: 550,
+                    y: 100
+                }],
+                // links: [],
+                links: [{
+                    source: '学历偏高',
+                    target: '工作经验小于3年',
+                    symbolSize: [5, 20],
+                    label: {
+                        show: true,
+                        formatter: function () {
+                            return '支持度0.81  置信度0.567939'
+                        }
+                    },
+                    lineStyle: {
+                        width: 5,
+                        curveness: 0.2
+                    }
+                }, {
+                    source: '工作经验小于3年',
+                    target: '学历偏高',
+                    label: {
+                        show: true,
+                        formatter: function () {
+                            return '支持度0.61  置信度0.756366'
+                        }
+                    },
+                    lineStyle: {
+                        curveness: 0.2
+                    }
+                }, {
+                    source: '工资大于8k',
+                    target: '学历偏高',
+                    label: {
+                        show: true,
+                        formatter: function () {
+                            return '支持度0.58  置信度0.916700'
+                        }
+                    },
+                    lineStyle: {
+                        width: 5,
+                        curveness: 0.2
+                    }
+                }, {
+                    source: '学历偏高',
+                    target: '工资大于8k',
+                    label: {
+                        show: true,
+                        formatter: function () {
+                            return '支持度0.81  置信度0.660469'
+                        }
+                    },
+                    lineStyle: {
+                        width: 5,
+                        curveness: 0.2
+                    }
+                }]
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+</script>

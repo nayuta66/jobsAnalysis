@@ -1,0 +1,76 @@
+<div id="data" style="display: none">
+    {% for i in answer %}
+    {{ i }},
+    {% endfor %}
+</div>
+<div>
+    <p style="margin: 10px;font-style: italic;font-size: medium">薪资、学历、工作经验、岗位需求</p>
+    <p style="margin: 10px;font-style: italic;font-size: small">总体对比</p>
+</div>
+
+<div id="main" style="width: 900px;height:400px;margin: auto auto"></div>
+<script type="text/javascript">
+    var d = document.getElementById('data').textContent
+    var s = d.split(',')
+    list1 = [];
+    for (let item = 0; item < s.length; item++) {
+        list1.push(s[item])
+    }
+    console.log(list1)
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    var option = {
+        title:{
+
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['类别', 'salary', 'edu', 'worktime', 'need'],
+                ['北京', list1[0], list1[1], list1[2], list1[3]],
+                ['上海', list1[4], list1[5], list1[6], list1[7]],
+                ['广州', list1[8], list1[9], list1[10], list1[11]],
+                ['深圳', list1[12], list1[13], list1[14], list1[15]]
+            ]
+        },
+        series: [{
+            name:'薪资',
+            type: 'pie',
+            radius: '20%',
+            center: ['25%', '30%']
+            // No encode specified, by default, it is '2012'.
+        }, {
+            name:'学历',
+            type: 'pie',
+            radius: '20%',
+            center: ['75%', '30%'],
+            encode: {
+                itemName: '类别',
+                value: 'edu'
+            }
+        }, {
+            name:'工作经验',
+            type: 'pie',
+            radius: '20%',
+            center: ['25%', '75%'],
+            encode: {
+                itemName: '类别',
+                value: 'worktime'
+            }
+        }, {
+            name:'岗位需求',
+            type: 'pie',
+            radius: '20%',
+            center: ['75%', '75%'],
+            encode: {
+                itemName: '类别',
+                value: 'need'
+            }
+        }]
+    };
+
+    option && myChart.setOption(option);
+</script>

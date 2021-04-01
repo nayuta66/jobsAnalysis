@@ -1,0 +1,152 @@
+<div id="data" style="display: none">
+    {{answer.type}},
+    {% for i in answer.d.items %}
+    {% for j in i.1 %}
+    {{j}},
+    {% endfor %}
+    {% endfor %}
+</div>
+<div id="main" style="width: 900px;height:400px;margin: auto auto"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var d = document.getElementById('data').textContent;
+    var s = d.split(',');
+    var t = s[0];
+    list1 = [];
+    for (let item = 1; item <= 11; item++) {
+        list1.push([1, item, s[item]])
+    }
+    for (let item = 12; item <= 14; item++) {
+        list1.push([2, item - 11, s[item]])
+    }
+    for (let item = 15; item <= 18; item++) {
+        list1.push([3, item - 14, s[item]])
+    }
+    for (let item = 19; item <= 27; item++) {
+        list1.push([4, item - 18, s[item]])
+    }
+    for (let item = 28; item <= 32; item++) {
+        list1.push([5, item - 27, s[item]])
+    }
+    for (let item = 33; item <= 39; item++) {
+        list1.push([6, item - 32, s[item]])
+    }
+    for (let item = 40; item <= 42; item++) {
+        list1.push([7, item - 39, s[item]])
+    }
+    for (let item = 43; item <= 46; item++) {
+        list1.push([8, item - 42, s[item]])
+    }
+    for (let item = 47; item <= 49; item++) {
+        list1.push([9, item - 46, s[item]])
+    }
+    for (let item = 50; item <= 52; item++) {
+        list1.push([10, item - 49, s[item]])
+    }
+    for (let item = 53; item <= 60; item++) {
+        list1.push([11, item - 52, s[item]])
+    }
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+    var data = list1;
+    var type = ''
+    var subtext1 = ''
+    var tt = '';
+    var max1 = 0;
+    for (let ii = 0; ii < list1.length; ii++) {
+        if (parseFloat(list1[ii][2]) > max1) {
+            max1 = list1[ii][2]
+        }
+    }
+    if ($.trim(t).localeCompare("salary") == 0) {
+        type = '行业薪资对比';
+        tt = '工资';
+        subtext1 = 'k/月';
+    }
+    if ($.trim(t).localeCompare("edu") == 0) {
+        type = '行业学历对比';
+        tt = '学历';
+        subtext1 = '0:  大专以下    1：大专    2：本科    3：硕士    4：博士';
+    }
+    if ($.trim(t).localeCompare("worktime") == 0) {
+        type = '工作经验对比';
+        tt = '工作经验';
+        subtext1 = '/年';
+    }
+    if ($.trim(t).localeCompare("need") == 0) {
+        type = '岗位需求对比';
+        tt = '岗位需求';
+        subtext1 = '/50个';
+    }
+    option = {
+        title: {
+            text: type,
+            subtext: subtext1
+        },
+        tooltip: {},
+        visualMap: {
+            max: max1,
+            inRange: {
+                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+            }
+        },
+        xAxis3D: {
+            name: '职能',
+            type: 'category',
+            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+        },
+        yAxis3D: {
+            name: '行业',
+            type: 'category',
+            data: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']
+
+        },
+        zAxis3D: {
+            name: tt,
+            type: 'value'
+        },
+        grid3D: {
+            boxWidth: 200,
+            boxDepth: 100,
+            viewControl: {
+                // projection: 'orthographic'
+            },
+            light: {
+                main: {
+                    intensity: 1.2,
+                    shadow: true
+                },
+                ambient: {
+                    intensity: 0.3
+                }
+            }
+        },
+        series: [{
+            type: 'bar3D',
+            data: data.map(function (item) {
+                return {
+                    value: [item[1], item[0], item[2]],
+                }
+            }),
+            shading: 'lambert',
+
+            label: {
+                fontSize: 16,
+                borderWidth: 1
+            },
+
+            emphasis: {
+                label: {
+                    fontSize: 20,
+                    color: '#900'
+                },
+                itemStyle: {
+                    color: '#900'
+                }
+            }
+        }]
+    }
+
+    option && myChart.setOption(option);
+</script>

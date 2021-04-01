@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>招聘数据分析网站</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css"/>
+    <script src="../static/layui/lay/modules/echarts.js"></script>
+    <script src="../static/layui/echarts-gl.js"></script>
+    <script src="../static/layui/jquery.js"></script>
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">招聘数据分析网站</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li id="association" class="layui-nav-item"> 关联分析 </li>
+            <li class="layui-nav-item"><div style="margin: 20px"></div></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">行业福利分词</a>
+                <dl class="layui-nav-child">
+                    <dd id="a"><a href="">互联网、电子</a></dd>
+                    <dd id="b"><a href="">销售、客服</a></dd>
+                    <dd id="c"><a href="">会计、金融、银行、保险</a></dd>
+                    <dd id="d"><a href="">生产、采购、物流</a></dd>
+                    <dd id="e"><a href="">建筑、房地产</a></dd>
+                    <dd id="f"><a href="">设计、市场、媒体、广告</a></dd>
+                    <dd id="g"><a href="">人事、行政、高级管理</a></dd>
+                    <dd id="h"><a href="">教育、培训</a></dd>
+                    <dd id="i"><a href="">生物、制药、化工、医疗</a></dd>
+                    <dd id="j"><a href="">咨询、法律、科研</a></dd>
+                    <dd id="k"><a href="">服务业</a></dd>
+                </dl>
+            </li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    辅助说明
+                </a>
+                <dl class="layui-nav-child">
+                    <dd id="introduction"><a>基本说明</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    nayuta
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">薪资对比</a>
+                    <dl class="layui-nav-child">
+                        <dd id="salary"><a href="javascript:;">整体对比</a></dd>
+                        <dd id="salary_1"><a href="javascript:;">不同行业</a></dd>
+                        <dd id="salary_2"><a href="javascript:;">同一行业</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学历对比</a>
+                    <dl class="layui-nav-child">
+                        <dd id="edu"><a href="javascript:;">整体对比</a></dd>
+                        <dd id="edu_1"><a href="javascript:;">不同行业</a></dd>
+                        <dd id="edu_2"><a href="javascript:;">同一行业</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">工作经验对比</a>
+                    <dl class="layui-nav-child">
+                        <dd id="worktime"><a href="javascript:;">整体对比</a></dd>
+                        <dd id="worktime_1"><a href="javascript:;">不同行业</a></dd>
+                        <dd id="worktime_2"><a href="javascript:;">同一行业</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">岗位需求对比</a>
+                    <dl class="layui-nav-child">
+                        <dd id="need"><a href="javascript:;">整体对比</a></dd>
+                        <dd id="need_1"><a href="javascript:;">不同行业</a></dd>
+                        <dd id="need_2"><a href="javascript:;">同一行业</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">一线城市对比</a>
+                    <dl class="layui-nav-child">
+                        <dd id="city"><a href="javascript:;">总体对比</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 10px;">
+            <div id="content">
+            </div>
+        </div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        <div style="margin: auto; font-size: 10px">© 汕头大学 - 吴荣标</div>
+    </div>
+</div>
+<script src="../static/layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        let element = layui.element;
+    });
+    $(document).ready(function () {
+        $("#introduction").click(function () {
+            let url = "introduction/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#salary").click(function () {
+            let url = "salary/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#salary_1").click(function () {
+            let url = "salary_1/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#salary_2").click(function () {
+            let url = "salary_2/";
+            $.post(url, 'aa', success);
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#edu").click(function () {
+            let url = "edu/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#edu_1").click(function () {
+            let url = "edu_1/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#edu_2").click(function () {
+            let url = "edu_2/";
+            $.post(url, 'aa', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#worktime").click(function () {
+            let url = "worktime/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#worktime_1").click(function () {
+            let url = "worktime_1/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#worktime_2").click(function () {
+            let url = "worktime_2/";
+            $.post(url, 'aa', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#need").click(function () {
+            let url = "need/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#need_1").click(function () {
+            let url = "need_1/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#need_2").click(function () {
+            let url = "need_2/";
+            $.post(url, 'aa', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+        $("#city").click(function () {
+            let url = "city/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+
+        $("#association").click(function () {
+            let url = "association/";
+            $.post(url, '', success);
+
+            function success(data) {
+                $("#content").html(data);
+            }
+        });
+    });
+</script>
+</body>
+</html>
