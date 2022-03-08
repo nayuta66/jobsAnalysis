@@ -34,19 +34,27 @@
                     x: 800,
                     y: 300
                 }, {
-                    name: '工资大于8k',
+                    name: '工资大于6k',
                     x: 550,
                     y: 100
+                }, {
+                    name: '学历偏低',
+                    x: 300,
+                    y: 100
+                },{
+                    name: '工作经验大于3年',
+                    x: 1000,
+                    y: 200
                 }],
                 // links: [],
                 links: [{
                     source: '学历偏高',
-                    target: '工作经验小于3年',
+                    target: '工资大于6k',
                     symbolSize: [5, 20],
                     label: {
                         show: true,
                         formatter: function () {
-                            return '支持度0.81  置信度0.567939'
+                            return '支持度0.34 置信度0.94 提升度1.13'
                         }
                     },
                     lineStyle: {
@@ -55,23 +63,11 @@
                     }
                 }, {
                     source: '工作经验小于3年',
-                    target: '学历偏高',
+                    target: '学历偏低',
                     label: {
                         show: true,
                         formatter: function () {
-                            return '支持度0.61  置信度0.756366'
-                        }
-                    },
-                    lineStyle: {
-                        curveness: 0.2
-                    }
-                }, {
-                    source: '工资大于8k',
-                    target: '学历偏高',
-                    label: {
-                        show: true,
-                        formatter: function () {
-                            return '支持度0.58  置信度0.916700'
+                            return '支持度0.61  置信度0.74 提升度1.13'
                         }
                     },
                     lineStyle: {
@@ -79,12 +75,12 @@
                         curveness: 0.2
                     }
                 }, {
-                    source: '学历偏高',
-                    target: '工资大于8k',
+                    source: '工作经验大于3年',
+                    target: '工资大于6k',
                     label: {
                         show: true,
                         formatter: function () {
-                            return '支持度0.81  置信度0.660469'
+                            return '支持度0.39  置信度0.93 提升度1.12'
                         }
                     },
                     lineStyle: {

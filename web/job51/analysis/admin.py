@@ -12,7 +12,7 @@ class JobdataAdmin(admin.ModelAdmin):
     list_display_links = ('id',)
     fields = (
     'category', 'job_fun', 'job_name', 'company_name', 'work_place', 'work_time', 'edu', 'job_num_details',
-    'release_time', 'salary', 'company_treatment', 'practice_mode')
+    'release_time', 'salary', 'practice_mode')
 
 
 @admin.register(JobNumData)

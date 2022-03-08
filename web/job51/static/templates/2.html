@@ -202,6 +202,7 @@
     var myChart = echarts.init(chartDom);
     var option;
     f()
+
     function f() {
         var dataAxis = [];
         var data = [];
@@ -211,6 +212,8 @@
         for (let i = 0; i < ddd.answer.d.length; i++) {
             dataAxis.push(i + 1)
         }
+        console.log(data)
+
         var yMax = 500;
         var dataShadow = [];
 
